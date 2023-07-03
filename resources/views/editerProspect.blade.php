@@ -59,8 +59,11 @@
                             <input type="time" class="form-control" name="heure_fin" id="heure_fin"
                                 value="{{$prospect->end_time}}">
                         </label>
+                        <span id="heure-fin-error" class="text-danger"></span>
+
                     </div>
                 </div>
+
 
                 <div class="row">
                     <div class="col-6">
@@ -95,6 +98,44 @@
                 </div>
                 <br>
             </div>
+            <script>
+                function uncheckOther(checkbox) {
+                    var checkboxes = document.getElementsByName(checkbox.name);
+                    checkboxes.forEach(function (item) {
+                        if (item !== checkbox) {
+                            item.checked = false;
+                        }
+                    });
+                }
+
+            </script>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    var heureDebutInput = document.getElementById("heure_debut");
+                    var heureFinInput = document.getElementById("heure_fin");
+                    var heureFinError = document.getElementById("heure-fin-error");
+            
+                    heureDebutInput.addEventListener("change", function () {
+                        if (heureFinInput.value !== "" && heureDebutInput.value > heureFinInput.value) {
+                            heureFinInput.value = "";
+                            heureFinError.textContent = "L'heure de fin doit être supérieure à l'heure de début.";
+                        } else {
+                            heureFinError.textContent = "";
+                        }
+                        heureFinInput.min = heureDebutInput.value;
+                    });
+            
+                    heureFinInput.addEventListener("change", function () {
+                        if (heureDebutInput.value !== "" && heureFinInput.value < heureDebutInput.value) {
+                            heureFinInput.value = "";
+                            heureFinError.textContent = "L'heure de fin doit être supérieure à l'heure de début.";
+                        } else {
+                            heureFinError.textContent = "";
+                        }
+                    });
+                });
+            </script>
+            
             <div class="col-md-12 d-flex justify-content-end">
                <a href="javascript:history.back()">
                 <button type="" class="bg-danger border border-dark rounded mx-4 pt-1 pb-1 fas fa-times ">

@@ -18,12 +18,12 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="NomAgent" class="form-label col-12 ">
-                            <input type="text" class="form-control" name="agent_nom" id="agent_nom" placeholder="Nom Agent">
+                            <input type="text" class="form-control" name="agent_nom" id="agent_nom" placeholder="Nom Agent"  required>
                         </label>
                     </div>
                     <div class="col-6">
                         <label for="NomClient" class="form-label col-12 ">
-                            <input type="text" class="form-control" name="client_nom" id="client_nom" placeholder="Nom Client">
+                            <input type="text" class="form-control" name="client_nom" id="client_nom" placeholder="Nom Client"  required>
                         </label>
                     </div>
                 </div>
@@ -32,12 +32,12 @@
                     <div class="col-6">
                         <label for="AdresseClient" class="form-label col-12 ">
                             <input type="text" class="form-control" name="client_adresse" id="client_adresse"
-                                placeholder="Adresse Client ">
+                                placeholder="Adresse Client "  required>
                         </label>
                     </div>
                     <div class="col-6">
                         <label for="Date" class="form-label col-12 ">
-                            <input type="date" class="form-control" name="date" id="date" placeholder="Date">
+                            <input type="date" class="form-control" name="date" id="date" placeholder="Date" max="{{ date('Y-m-d') }}" required>
                         </label>
                     </div>
                 </div>
@@ -45,13 +45,14 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="Heure de debut" class="form-label col-12 "> Heure de début
-                            <input type="time" class="form-control" name="heure_debut" id="heure_debut" value="Heure de début">
+                            <input type="time" class="form-control" name="heure_debut" id="heure_debut" value="Heure de début"  required>
                         </label>
                     </div>
                     <div class="col-6">
                         <label for="Heure de fin" class="form-label col-12 "> Heure de fin
-                            <input type="time" class="form-control" name="heure_fin" id="heure_fin" placeholder="Heure de fin">
+                            <input type="time" class="form-control" name="heure_fin" id="heure_fin" placeholder="Heure de fin"  required>
                         </label>
+                        <span id="heure-fin-error" class="text-danger"></span>
                     </div>
 
                 </div>
@@ -100,7 +101,34 @@
                     </div>
                     <br> <br>
                 </div>
-
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        var heureDebutInput = document.getElementById("heure_debut");
+                        var heureFinInput = document.getElementById("heure_fin");
+                        var heureFinError = document.getElementById("heure-fin-error");
+                
+                        heureDebutInput.addEventListener("change", function () {
+                            if (heureFinInput.value !== "" && heureDebutInput.value > heureFinInput.value) {
+                                heureFinInput.value = "";
+                                heureFinError.textContent = "L'heure de fin doit être supérieure à l'heure de début.";
+                            } else {
+                                heureFinError.textContent = "";
+                            }
+                            heureFinInput.min = heureDebutInput.value;
+                        });
+                
+                        heureFinInput.addEventListener("change", function () {
+                            if (heureDebutInput.value !== "" && heureFinInput.value < heureDebutInput.value) {
+                                heureFinInput.value = "";
+                                heureFinError.textContent = "L'heure de fin doit être supérieure à l'heure de début.";
+                            } else {
+                                heureFinError.textContent = "";
+                            }
+                        });
+                    });
+                </script>
+                
+                
                 </div> <br> 
                 <div class="col-md-12 d-flex justify-content-end">
                     <a href="javascript:history.back()" class="bg-danger text-dark border border-dark rounded mx-4 pt-1 pb-1 fas fa-times">

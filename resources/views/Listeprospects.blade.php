@@ -1,7 +1,7 @@
 @extends('layoutss/master')
 @section('contenu')
 <div class="container">
-  <div class="border border-dark mx-3 text-dark rounded shadow-lg">
+  <div class="border border-dark mx-0 text-dark rounded shadow-lg">
     <div class="p-3">
       <div class="d-flex justify-content-between align-items-center">
         <h3 class="text-decoration-underline">Liste des Prospects</h3>

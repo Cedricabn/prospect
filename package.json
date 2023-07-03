@@ -2,7 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "vite  mix watch",
         "build": "vite build",
         "prod": "npm run dev && mix --production"
     },

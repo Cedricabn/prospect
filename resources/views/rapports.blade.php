@@ -23,7 +23,7 @@
       </div>
     </form>
 
-    <a href="{{ route('exporterRapports') }}" class="btn btn-primary">
+    <a href="{{ route('exporterRapports') }}" class="btn btn-success">
       Exporter en excel
     </a>
   </div>

@@ -292,9 +292,9 @@
                     <div class="copyright text-center my-auto">
                       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dash')}}">
                         <div class="sidebar-brand-icon rotate-n-15">
-                          <i class="fas fa-laugh-wink"></i>
+                          <i class="fas fa-laugh-wink text-success"></i>
                         </div>
-                        <div class="sidebar-brand-text mx-3">Prospect Dash <sup>1</sup></div>
+                        <div class="sidebar-brand-text text-success mx-3">Prospect Dash <sup>1</sup></div>
                       </a> <br> <br>
                         <span>Copyright &copy; ABIONAN Cédric</span>
                     </div>
